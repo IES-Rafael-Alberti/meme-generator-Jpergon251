@@ -1,3 +1,19 @@
+<?php
+require("conecta.php");
+$usuarios = $conn->query("Select * from usuarios");
+$usuarios_assoc = $usuarios->fetchAll(PDO::FETCH_ASSOC);
+print("<table class='users'>");
+foreach($usuarios_assoc as $user){
+    print("<td>");
+    print($user["nombre"]);
+    print("</td>");
+    print("<td>");
+    print($user["foto"]);
+    print("</td>");
+    print("</tr>");
+}
+print("</table>");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,5 +25,6 @@
 <body>
     <a href="phpinfo.php">phpinfo()</a>
     <a href="xdebug_info.php">xdebug_info()</a>
+
 </body>
 </html>
