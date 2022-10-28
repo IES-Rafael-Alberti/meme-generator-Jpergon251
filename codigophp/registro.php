@@ -4,14 +4,15 @@ if(isset($_POST['nombre'])){
     require("conecta.php");
 
     $nombre = $_POST["nombre"];
-    $contraseña = $_POST["contraseña"];
+    $contrasena = $_POST["contrasena"];
     $foto = $_FILES["foto"]["name"];
 
+    //file_put_contents("fotos/$foto", file_get_contents($_FILES["foto"]["tmp_name"]));
 
-    $sql = "INSERT INTO usuarios (nombre,contraseña,foto) values(:nombre,:contrasena,:foto)";
+    $sql = "INSERT INTO usuarios (nombre, contrasena, foto) values (:nombre, :contrasena, :foto)";
     $datos = array(
         "nombre" => $nombre,
-        "contrasena" => $contraseña,
+        "contrasena" => $contrasena,
         "foto" => $foto
     );
 
@@ -39,15 +40,14 @@ if(isset($_POST['nombre'])){
     <title>registro</title>
 </head>
 <body>
-    <form action="">
+    <form action="" method="post" enctype="multipart/form-data">
     <label for="">Nombre: </label>
     <input type="text" id="nombre" name="nombre">
     <label for="">Contraseña: </label>
-    <input type="password" id="contraseña" name="contraseña">
+    <input type="password" id="contrasena" name="contrasena">
     <label for="">Foto: </label>
     <input type="file" id="foto" name="foto">
     <label for=""><input type="submit" value="Enviar"></label>
-
     </form>
 </body>
 </html>

@@ -1,21 +1,23 @@
 <?php
-if(isset($_POST['usuarios'])) {
+if(isset($_POST['nombre'])) {
     require("concecta.php");
     
-    $usuarios = $_POST['usuarios'];
-    $password = $_POST['password'];
+    $nombre = $_POST['nombre'];
+    $contrasena = $_POST['contrasena'];
 
-    $sql = "SELECT * FROM usuarios WHERE nombre = :usuarios AND contraseña = :contrasena";
+    $sql = "SELECT * FROM nombre WHERE nombre = :nombre AND contrasena = :contrasena";
 
     $datos = array(
-        "usuarios" => $usuarios,
-        "contrasena" => $password
+        "nombre" => $nombre,
+        "contrasena" => $contrasena
     );
+    
     $stmt = $conn->prepare($sql);
+
     $stmt->execute($datos);
     if($stmt->rowCount() == 1){
         session_start();
-        $_SESSION["usuarios"] = $usuarios;
+        $_SESSION["nombre"] = $nombre;
         session_write_close();
         header("Location: index.php");
         exit(0);
@@ -34,13 +36,14 @@ if(isset($_POST['usuarios'])) {
     <title>login</title>
 </head>
 <body>
-    <label action="" method="post" enctype="multipart/form-data">Nombre: </label>
+    <form action="" method="post" enctype="multipart/form-data">
+    <label action="" method="post">Nombre: </label>
     <input type="text" id="nombre" name="nombre">
     <label for="">Contraseña: </label>
-    <input type="password" id="password" name="password">
+    <input type="password" id="contrasena" name="contrasena">
     <input type="submit" value="Login">
 
     <a href="./registro.php">Registrarse</a>
-
+    </form>
 </body>
 </html>
