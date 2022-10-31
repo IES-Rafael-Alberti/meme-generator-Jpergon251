@@ -41,7 +41,9 @@ $data = json_decode($result, true);
 if($data["success"]) {
     echo "<img src='". $_GET['url'] ."'>";
     for ($i = 1; $i <= $_GET['cajas']; $i++) {
-        echo "<input type='text' name='caja' id='caja'>";
+        $n=1;
+        echo "<input type='text' name='caja' id='caja"+"$n"+"'>";
+        $n++;
     }
 }
 ?>
