@@ -28,6 +28,8 @@ print("</table>");
     
     <a href="./login.php">Login</a>
     <a href="./registro.php">Registrarse</a>
+    <a href="./listamemes.php">Lista de memes a elegir</a>
+    
 
 </body>
 </html>

@@ -4,17 +4,11 @@ $url = 'https://api.imgflip.com/caption_image';
 
 //The data you want to send via POST
 $fields = array(
-        "template_id" => "112126428",
+        "template_id" => $_GET['id'],
         "username" => "fjortegan",
         "password" => "pestillo",
-        "boxes" => array( 
-            array("text" => "Frontend",
-                  "color" => "#ff8484"),
-            array("text" => "Alumno DAW",
-                  "color" => "#D6FFF6"),
-            array("text" => "Backend",
-                  "color" => "#2374ab")
-        ));
+        "boxes" => array());
+
 
 
 //url-ify the data for the POST
@@ -38,14 +32,7 @@ $result = curl_exec($ch);
 $data = json_decode($result, true);
 
 //if success show image
-if($data["success"]) {
-    echo "<img src='". $_GET['url'] ."'>";
-    for ($i = 1; $i <= $_GET['cajas']; $i++) {
-        $n=1;
-        echo "<input type='text' name='caja' id='caja"+"$n"+"'>";
-        $n++;
-    }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -57,8 +44,21 @@ if($data["success"]) {
     <title>Altameme</title>
 </head>
 <body>
-    <form action="" method="$_POST">
-        <input type="submit" value="Enviar">
+    <form action="" method="post">
+        <?php
+            echo "<input type='hidden' name='cajas' value='<?php echo". $_GET['cajas'] ."; ?>'>";
+            echo "<input type='hidden' name='id' value='<?php echo ". $_GET['id'] ."; ?>'>";
+            //if($data["success"]) {
+                //echo "<img src='". $data['data']['url'] ."'>";
+                echo "<img width='500px' src='". $_GET['url'] ."'>";
+                for ($i = 1; $i <= $_GET['cajas']; $i++) {
+                    echo "<br><input type='text' name='caja$i' id='caja$i'><br>";
+                }               
+            //}
+            
+        ?>
+        <input type="submit" value="Ver">
+        
     </form>
 </body>
 </html>
