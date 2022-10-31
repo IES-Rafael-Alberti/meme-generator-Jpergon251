@@ -7,7 +7,7 @@ if(isset($_POST['nombre'])){
     $contrasena = $_POST["contrasena"];
     $foto = $_FILES["foto"]["name"];
 
-    //file_put_contents("fotos/$foto", file_get_contents($_FILES["foto"]["tmp_name"]));
+    file_put_contents("ejemplos/images/$foto", file_get_contents($_FILES["foto"]["tmp_name"]));
 
     $sql = "INSERT INTO usuarios (nombre, contrasena, foto) values (:nombre, :contrasena, :foto)";
     $datos = array(
@@ -23,7 +23,7 @@ if(isset($_POST['nombre'])){
         exit(0);
     }
 
-    print("<br><img src='/fotos/$foto'><br>");
+    print("<br><img src='ejemplos/images/$foto' alt='Foto de perfil'><br>");
 
     exit(0);
 

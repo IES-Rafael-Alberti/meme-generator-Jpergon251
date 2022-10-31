@@ -1,14 +1,14 @@
 <?php
 if(isset($_POST['nombre'])) {
-    require("concecta.php");
+    require("conecta.php");
     
-    $nombre = $_POST['nombre'];
+    $usuarios = $_POST['nombre'];
     $contrasena = $_POST['contrasena'];
 
-    $sql = "SELECT * FROM nombre WHERE nombre = :nombre AND contrasena = :contrasena";
+    $sql = "SELECT * FROM usuarios WHERE nombre = :usuarios AND contrasena = :contrasena";
 
     $datos = array(
-        "nombre" => $nombre,
+        "usuarios" => $usuarios,
         "contrasena" => $contrasena
     );
     
@@ -17,7 +17,7 @@ if(isset($_POST['nombre'])) {
     $stmt->execute($datos);
     if($stmt->rowCount() == 1){
         session_start();
-        $_SESSION["nombre"] = $nombre;
+        $_SESSION["usuarios"] = $usuarios;
         session_write_close();
         header("Location: index.php");
         exit(0);
@@ -42,8 +42,7 @@ if(isset($_POST['nombre'])) {
     <label for="">Contraseña: </label>
     <input type="password" id="contrasena" name="contrasena">
     <input type="submit" value="Login">
-
-    <a href="./registro.php">Registrarse</a>
     </form>
+    <a href="./registro.php">Registrarse</a>
 </body>
 </html>

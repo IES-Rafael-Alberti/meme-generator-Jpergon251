@@ -26,7 +26,8 @@ print("</table>");
     <a href="phpinfo.php">phpinfo()</a>
     <a href="xdebug_info.php">xdebug_info()</a>
     
-    <a href="login.php">Login</a>
+    <a href="./login.php">Login</a>
+    <a href="./registro.php">Registrarse</a>
 
 </body>
 </html>
